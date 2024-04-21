@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Static Turntable Arm on Spinning Vinyl Record</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+  }
+
+  .record-container {
+    position: relative;
+    width: 320px;
+    height: 320px;
+  }
+
+  .record {
+    width: 320px; /* Outer diameter */
+    height: 320px; /* Outer diameter */
+    background-color: black; /* Outer black border */
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    animation: spin 20s linear infinite;
+    overflow: hidden;
+  }
+
+  .record::before {
+    content: '';
+    position: absolute;
+    top: 10px; /* Wider border */
+    left: 10px; /* Wider border */
+    right: 10px; /* Wider border */
+    bottom: 10px; /* Wider border */
+    background: 
+      radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent 100%),
+      url('https://github.com/Pitohui000/band/blob/main/%D0%B0%D1%80%20GIF%20-%20%D0%90%D1%80%20-%20Descubrir%20y%20compartir%20GIFs.gif?raw=true'); /* Replace with the actual path to your image */
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+  }
+
+  .record::after {
+    content: '';
+    position: absolute;
+    top: 140px;
+    left: 140px;
+    width: 40px;
+    height: 40px;
+    background-color: red;
+    border-radius: 50%;
+  }
+  .record-center {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: red;
+    border-radius: 50%; /* Makes it circular */
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+
+  .center-dot {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px; /* Size of the white dot */
+    height: 10px; /* Size of the white dot */
+    background-color: white; /* Color of the white dot */
+    border-radius: 50%; /* Makes it circular */
+    transform: translate(-50%, -50%);
+    z-index: 3; /* Ensures the dot is above the red circle */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  }
+
+
+  /* New turntable arm design */
+  .turntable-arm {
+    position: absolute;
+    top: 20%;
+    right: 100px;;
+    width: 10px;
+    height: 180px;
+    background-color: #333;
+    transform: translateY(-50%) rotate(45deg);
+    transform-origin: bottom right;
+    border-radius: 3px;
+  }
+
+  .turntable-arm::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -15px;
+    width: 30px;
+    height: 30px;
+    background-color: #333;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  }
+
+  .turntable-arm::after {
+    content: '';
+    position: absolute;
+    top: 180px;
+    right: -5px;
+    width: 10px;
+    height: 22px;
+    background-color: #e7e7e7;
+    transform: translateY(-6px) rotate(35deg);
+    transform-origin: top right;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+</style>
+</head>
+<body>
+  <div class="record-container">
+    <div class="record">
+      <div class="record-center"></div> <!-- Red center circle -->
+      <div class="center-dot"></div> <!-- White center dot -->
+    </div>
+    <div class="turntable-arm"></div>
+</div>
+</body>
+</html>
