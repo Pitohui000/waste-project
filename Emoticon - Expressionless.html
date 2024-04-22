@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+  <div class="face">
+    <div class="eye left"></div>
+    <div class="eye right"></div>
+  </div>
+
+
+
+</body>
+<style>
+  body {
+    margin: 0;
+    height: 100vh; /* 使用整個視窗的高度 */
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    background: #f0f0f0; /* 設定一個背景顏色 */
+  }
+
+  .face {
+    position: relative;
+    width: 100px; /* 臉的寬度 */
+    height: 100px; /* 臉的高度 */
+    border-radius: 50%; /* 圓形臉 */
+    background-color: #ffcc00; /* 臉的基本黃色 */
+    box-shadow:
+      inset 10px -10px 20px rgba(255, 255, 255, 0.5), /* 高光效果 */
+      inset -5px 5px 15px rgba(0, 0, 0, 0.2), /* 內陰影效果增加深度 */
+      0px 10px 20px rgba(0, 0, 0, 0.25); /* 外陰影增加立體感 */
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly; /* 均勻分布眼睛 */
+  }
+
+  .eye {
+    position: relative;
+    top: -10px; /* 將眼睛向上移動 5px */
+    width: 10px; /* 眼睛的寬度 */
+    height: 30px; /* 眼睛的高度，更加橢圓 */
+    background-color: #333; /* 眼睛的顏色 */
+    border-radius: 50%; /* 圓形眼睛 */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5); /* 眼睛的陰影增加立體感 */
+    animation: blink 3s infinite; /* 應用動畫，總時長調整為 3 秒 */
+  }
+
+  @keyframes blink {
+    0%, 20%, 80%, 100% { transform: scaleY(1); } /* 原始橢圓形，增加停滯時間 */
+    50% { transform: scaleY(0.001); } /* 幾乎關閉，模擬扎眼睛的效果，位於動畫中點 */
+  }
+
+</style>
+</html>
