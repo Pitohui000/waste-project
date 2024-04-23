@@ -1,0 +1,183 @@
+//倒數計時網頁自動關閉
+//使用Roplit線上工具
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+  
+  <div id="countdown">
+      <p id="timer"></p>
+      <label class="switch" id="stopButton">
+          <input type="checkbox" id="toggleSwitch">
+          <span class="slider"></span>
+      </label>
+
+  </div>
+  <style>
+    
+    /* styles.css */
+    /* styles.css */
+    body, html {
+        height: 100%;
+        margin: 0;
+        font-family: 'Courier New', Courier, monospace; /* 更改字體為等寬字型 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f3f3f3;
+    }
+
+    #countdown {
+        padding: 20px;
+        border: 2px solid #000;
+        border-radius: 5px;
+        background: #fff;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    #timer {
+        font-size: 4rem; /* 增加字體大小 */
+        font-weight: bold;
+        color: darkred; /* 設定字體顏色為深紅 */
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+        background-color: red;
+        border-radius: 34px;
+        box-shadow: 0 0 10px #666;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+    input:checked + .slider {
+        background-color: #ff0000;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    input:checked + .slider:before {
+        transform: translateX(26px);
+    }
+
+    /* 为“暫停/繼續”按钮添加类似的样式 */
+    #stopButton {
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+        background-color: #ccc;
+        border-radius: 34px;
+        box-shadow: 0 0 10px #666;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+        line-height: 34px;
+        cursor: pointer;
+        transition: background-color .4s;
+    }
+
+    #stopButton:hover {
+        background-color: #ff0000;
+    }
+  </style>
+
+  <script>
+    // switch.js
+    // switch.js
+    // switch.js
+    document.getElementById('toggleSwitch').addEventListener('change', function() {
+        if (this.checked) {
+            console.log('Switch ON');
+        } else {
+            console.log('Switch OFF');
+        }
+    });
+
+    var paused = false;
+    var timer = null;
+    var remainTime = 12000; // 初始60秒
+
+    function startTimer() {
+        var end = Date.now() + remainTime;
+
+        function tick() {
+            if (paused) {
+                clearInterval(timer);
+                return;
+            }
+
+            var now = Date.now();
+            remainTime = end - now;
+
+            if (remainTime <= 0) {
+                clearInterval(timer);
+                document.getElementById('timer').textContent = "🖕";
+                window.close(); // 计时结束时尝试关闭网页
+                return;
+            }
+
+            var seconds = Math.floor((remainTime / 1000) % 60);
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            document.getElementById('timer').textContent = seconds;
+        };
+
+        tick();
+        timer = setInterval(tick, 1000);
+    }
+
+    document.getElementById('stopButton').addEventListener('click', function() {
+        if (!paused) {
+            paused = true;
+            this.textContent = "繼續";
+            clearInterval(timer);
+        } else {
+            paused = false;
+            this.textContent = "暫停";
+            startTimer(); // 从剩余时间继续
+        }
+    });
+
+    startTimer(); // 初始化计时器
+
+  </script>
+</body>
+
+</html>
