@@ -1,0 +1,42 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+body {
+    height: 100vh;
+    margin: 0;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.circle {
+    position: absolute;
+
+    transform: scale(7);
+    animation: scaleUp 0.5s forwards, fadeOut 0.5s 0.3s forwards;
+
+  width: 300px; /* Adjust size as needed */
+  height: 300px; /* Adjust size as needed */
+  background-image: url('https://memeprod.sgp1.digitaloceanspaces.com/user-resource/468abe2e8b60b97df12f467af725b551.png'); /* Update with the correct path */
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  opacity: 1;
+}
+
+@keyframes scaleUp {
+    to {
+        transform: scale(1);
+        width: 300px;
+        height: 300px;
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}
