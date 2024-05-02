@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>Three.js Character Model</title>
+    <style type ="text/css">
+        body { margin: 0; }
+    #info{
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      text-align: center;
+      z-indez: 100;
+      color:white;
+      display: block;
+      font-size: 50px;
+      font-family: monospace;
+
+    }
+    #particles-js{
+      position: absolute;
+      top: 0%;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      display: block;
+      font-family: monospace;
+      pointer-events: none;
+    }
+  </style>
+</head>
+  
+<body>
+  <div id="particles-js"></div>
+  <script src="particles.js-master/particles.js"></script>
+  <script src="particles.js-master/demo/js/app.js"></script>
+  <script type = "module" >
+    import * as THREE from 'https://cdn.skypack.dev/three@0.130.0';
+
+    import { OrbitControls } from 'https://cdn.skypack.dev/three@0.130.0/examples/jsm/controls/OrbitControls.js';
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 )
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild( renderer.domElement );
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    
+    const geometry = new THREE.SphereGeometry(1, 32, 32);
+    const textureLoader = new THREE.TextureLoader();
+    const texture = textureLoader.load('sun.jpg')
+    
+    const material = new THREE.MeshBasicMaterial({ map:texture});
+    const sphere = new THREE.Mesh( geometry, material ); 
+    scene.add(sphere);
+    camera.position.z = 5;
+
+    function animate(){
+      sphere.rotation.x += 0.01;
+      sphere.rotation.y += 0.01;
+      requestAnimationFrame( animate );
+      controls.update();
+      renderer.render(scene, camera);
+    }
+
+    animate();
+  </script>
+  <div id = "info">The Sun In The Space</div>
+</body>
+</html>
