@@ -1,0 +1,61 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: #f0f0f0;
+}
+
+.eye {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(to bottom, #000000 40%, #808080 110%);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #000;
+  overflow: hidden; /* Ensure parts of X outside the eye are not visible */
+
+}
+.lashes {
+  position: absolute;
+  top: 50%;  /* Center vertically */
+  left: 49%;  /* Center horizontally */
+  width: 160px;  /* Fixed width */
+  height: 140px;  /* Fixed height */
+  background: transparent;
+  border-radius: 55px 250px 0px 290px;
+  box-shadow: 
+    0px -2px 0px 0px black inset,  /* Top center lash */
+    5px -20px 0px 0px black inset, /* Top right lash */
+    -20px -10px 0px 0px black inset; /* Top left lash */
+  transform: translate(-50%, -50%) rotate(145deg);
+  z-index: 3;
+}
+
+.pupil {
+  width: 100px; /* Wider than the original circle to form X */
+  height: 105px; /* Wider than the original circle to form X */
+  position: relative;
+}
+
+.pupil::before, .pupil::after {
+  content: '';
+  position: absolute;
+  width: 10px; /* Width of the arms of the X */
+  height: 100%; /* Full height of the pupil container */
+  background-color: red;
+  left: 50%; /* Centering the line in the middle */
+  transform: translateX(-50%); /* Center the line exactly */
+  border-radius: 50%; 
+}
+
+.pupil::before {
+  transform: translateX(-50%) rotate(45deg); /* Rotate to form one arm of X */
+}
+
+.pupil::after {
+  transform: translateX(-50%) rotate(-45deg); /* Rotate to form the other arm of X */
+}
